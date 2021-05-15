@@ -11,22 +11,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-
 'use strict';
-
-import * as cors from 'cors';
-import config from '../config';
-import chsa from './routes/chsa';
-import ehlo from './routes/ehlo';
-
-const corsOptions = {
-  origin: config.get('environment') === 'development' ? '*' : config.get('apiUrl'),
-  credentials: true,
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+exports.__esModule = true;
+exports.GEO_API_CALL = exports.ENVIRONMENTS = void 0;
+exports.ENVIRONMENTS = {
+    DEVELOPMENT: 'development',
+    PRODUCTION: 'production'
 };
-
-export const router = app => {
-  app.use(cors(corsOptions));
-  app.use('/api/v1/ehlo', ehlo); // probes
-  app.use('/api/v1/chsa', chsa); // chsa resources
+exports.GEO_API_CALL = {
+    SERVICE: 'WFS',
+    VERSION: '1.0.0',
+    REQUEST: 'GetFeature',
+    TYPE_NAME: 'pub:WHSE_ADMIN_BOUNDARIES.BCHA_CMNTY_HEALTH_SERV_AREA_SP',
+    SRS_NAME: 'EPSG:4326',
+    PROPERTY_NAME: 'CMNTY_HLTH_SERV_AREA_CODE,CMNTY_HLTH_SERV_AREA_NAME',
+    OUTPUT_FORMAT: 'application/json'
 };

@@ -11,22 +11,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-
 'use strict';
-
-import * as cors from 'cors';
-import config from '../config';
-import chsa from './routes/chsa';
-import ehlo from './routes/ehlo';
-
-const corsOptions = {
-  origin: config.get('environment') === 'development' ? '*' : config.get('apiUrl'),
-  credentials: true,
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-};
-
-export const router = app => {
-  app.use(cors(corsOptions));
-  app.use('/api/v1/ehlo', ehlo); // probes
-  app.use('/api/v1/chsa', chsa); // chsa resources
-};
+exports.__esModule = true;
+var common_nodejs_utils_1 = require("@bcgov/common-nodejs-utils");
+// import express from 'express';
+var express = require('express');
+var chsa_1 = require("../../controllers/chsa");
+var router = express.Router();
+router.post('/', common_nodejs_utils_1.asyncMiddleware(chsa_1.queryChsaResponseSet));
+exports["default"] = router;

@@ -11,22 +11,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-
 'use strict';
-
-import * as cors from 'cors';
-import config from '../config';
-import chsa from './routes/chsa';
-import ehlo from './routes/ehlo';
-
-const corsOptions = {
-  origin: config.get('environment') === 'development' ? '*' : config.get('apiUrl'),
-  credentials: true,
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-};
-
-export const router = app => {
-  app.use(cors(corsOptions));
-  app.use('/api/v1/ehlo', ehlo); // probes
-  app.use('/api/v1/chsa', chsa); // chsa resources
-};
+exports.__esModule = true;
+var geo_api_usage_log_1 = require("./model/geo-api-usage-log");
+var DataManager = /** @class */ (function () {
+    function DataManager(pool) {
+        this.pool = pool;
+        this.GeoApiUsageLogModel = new geo_api_usage_log_1["default"](pool);
+    }
+    return DataManager;
+}());
+exports["default"] = DataManager;

@@ -15,13 +15,15 @@
 'use strict';
 
 import { logger } from '@bcgov/common-nodejs-utils';
-import bodyParser from 'body-parser';
-import flash from 'connect-flash';
-import cookieParser from 'cookie-parser';
-import express from 'express';
-import fs from 'fs';
-import path from 'path';
+import * as bodyParser from 'body-parser';
+import * as flash from 'connect-flash';
+import * as cookieParser from 'cookie-parser';
+// import * as express from 'express';
+import * as fs from 'fs';
+import * as path from 'path';
 import { router } from './router';
+
+const express = require('express');
 
 const app = express();
 const options = {

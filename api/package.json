@@ -8,11 +8,11 @@
     "chsa"
   ],
   "scripts": {
-    "build": "NODE_ENV=production gulp",
+    "build": "SET NODE_ENV=production gulp",
     "build:doc": "mkdir -p public/doc/api/ && api2html -o public/doc/api/index.html -l shell,javascript--nodejs ./doc/api.yaml",
     "dev": "nodemon --watch src --inspect=0.0.0.0:9229 -e ts,tsx --exec node -r ts-node/register ./src/server.ts",
     "dev:docker": "nodemon -L --delay 1600ms --watch build --inspect=0.0.0.0:9229 -e js,json --nolazy ./build/server.js",
-    "start": "node build/server.js",
+    "start": "tsc src/server.ts",
     "test:lint": "NODE_ENV=test tslint src/**/*.ts",
     "test:schema": "swagger-cli validate doc/api.yaml",
     "test": "NODE_ENV=test jest __tests__",
@@ -29,8 +29,8 @@
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
-    "lodash": "^4.17.19",
-    "nconf": "^0.10.0",
+    "lodash": "^4.17.21",
+    "nconf": "^0.11.2",
     "pg": "^8.3.0",
     "transform-runtime": "0.0.0"
   },
@@ -39,7 +39,7 @@
     "@types/jest": "^25.2.3",
     "@types/nconf": "0.10.0",
     "@types/node": "^14.0.27",
-    "api2html": "^0.3.5",
+    "api2html": "^0.4.0",
     "gulp": "^4.0.2",
     "gulp-clean": "^0.4.0",
     "gulp-sourcemaps": "^2.6.5",

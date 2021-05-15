@@ -15,7 +15,8 @@
 'use strict';
 
 import { asyncMiddleware } from '@bcgov/common-nodejs-utils';
-import express from 'express';
+// import express from 'express';
+const express = require('express');
 import { queryChsaResponseSet } from '../../controllers/chsa';
 
 const router = express.Router();

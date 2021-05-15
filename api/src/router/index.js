@@ -11,22 +11,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-
 'use strict';
-
-import * as cors from 'cors';
-import config from '../config';
-import chsa from './routes/chsa';
-import ehlo from './routes/ehlo';
-
-const corsOptions = {
-  origin: config.get('environment') === 'development' ? '*' : config.get('apiUrl'),
-  credentials: true,
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+exports.__esModule = true;
+exports.router = void 0;
+var cors = require("cors");
+var config_1 = require("../config");
+var chsa_1 = require("./routes/chsa");
+var ehlo_1 = require("./routes/ehlo");
+var corsOptions = {
+    origin: config_1["default"].get('environment') === 'development' ? '*' : config_1["default"].get('apiUrl'),
+    credentials: true,
+    optionsSuccessStatus: 200
 };
-
-export const router = app => {
-  app.use(cors(corsOptions));
-  app.use('/api/v1/ehlo', ehlo); // probes
-  app.use('/api/v1/chsa', chsa); // chsa resources
+exports.router = function (app) {
+    app.use(cors(corsOptions));
+    app.use('/api/v1/ehlo', ehlo_1["default"]); // probes
+    app.use('/api/v1/chsa', chsa_1["default"]); // chsa resources
 };
