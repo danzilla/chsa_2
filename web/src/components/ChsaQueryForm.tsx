@@ -13,7 +13,7 @@
 //
 
 import { Label } from '@rebass/forms';
-import React from 'react';
+import React, { useState} from 'react';
 import { Field, Form } from 'react-final-form';
 import useApi from '../hooks/useApi';
 import getValidator from '../utils/getValidator';
@@ -35,7 +35,11 @@ const convertFormData = (formData: any) => {
   };
 };
 
+
 const ChsaQueryForm: React.FC = () => {
+
+  const [dataResponse, setDataResponse] = useState("")
+
   const api = useApi();
 
   const onSubmit = async (formData: any) => {
@@ -46,14 +50,26 @@ const ChsaQueryForm: React.FC = () => {
         .queryChsaResponseSet(queriedPoint)
         .then((response) => {
           const chsaName = response.data.CMNTY_HLTH_SERV_AREA_NAME;
-          alert(`The name of the corresponding Community Health Service Area: ${chsaName}`);
+          let msg = `The name of the corresponding Community Health Service Area: ${chsaName}`
+          // alert();
+          console.log(JSON.stringify(response.data));
+          setDataResponse(msg)
+        
         })
         .catch((err) => {
-          alert(err.response.data.error);
+          if(err.response.data){
+            setDataResponse("Error: " + err.response.data)
+          }
+          if(err.response.data.error){
+            setDataResponse("Error: " + err.response.data.error)
+          }
+          // setDataResponse(JSON.stringify(err.response))
+          // alert(err.response.data.error);
         });
     } catch (err) {
-      alert(err.message);
-      console.log(err);
+      let msg = "Error: " + JSON.stringify(err)
+      setDataResponse(msg)
+      // alert(err.message);
     }
   };
 
@@ -67,6 +83,11 @@ const ChsaQueryForm: React.FC = () => {
     >
       {(formProps) => (
         <form onSubmit={formProps.handleSubmit}>
+
+        
+        <p>{dataResponse}</p>
+
+
           Please provide a valid BC location to query Community Health Service Area name.
           <Label htmlFor="longitude">Longitude</Label>
           <Field<string>

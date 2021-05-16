@@ -18,8 +18,6 @@ var config_1 = require("./config");
 var index_1 = require("./index");
 var env = config_1["default"].get('environment');
 var port = config_1["default"].get('port');
-var test = config_1["default"].get('test');
-console.log("\n \n Port: " + JSON.stringify(test) + "\n");
 index_1["default"].listen(port, '0.0.0.0', function () {
     if (env !== 'production') {
         return common_nodejs_utils_1.started(port);

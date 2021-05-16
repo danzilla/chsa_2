@@ -11,7 +11,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-'use strict';
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -82,9 +82,10 @@ exports.queryChsaResponseSet = function (req, res) { return __awaiter(void 0, vo
                 return [3 /*break*/, 4];
             case 3:
                 err_1 = _b.sent();
-                message = 'unable to query chsa response set';
+                message = "unable to query chsa response set";
                 common_nodejs_utils_1.logger.error(message + ", err = " + err_1.message);
-                throw common_nodejs_utils_1.errorWithCode(err_1.message, err_1.code);
+                res.status(err_1.code).json(err_1.message);
+                return [3 /*break*/, 4];
             case 4: return [2 /*return*/];
         }
     });
@@ -92,11 +93,11 @@ exports.queryChsaResponseSet = function (req, res) { return __awaiter(void 0, vo
 var validate = function (body) {
     var longitude = body.longitude, latitude = body.latitude;
     if (utils_1.isEmptyValue(longitude) || utils_1.isEmptyValue(latitude)) {
-        var message = 'missing required fields in body, longitude / latitude input';
+        var message = "missing required fields in body, longitude / latitude input";
         return common_nodejs_utils_1.errorWithCode(message, 400);
     }
-    if (!(typeof longitude === 'number' && typeof latitude === 'number')) {
-        var message = 'invalid longitude / latitude input, make sure they are (signed) numeric value';
+    if (!(typeof longitude === "number" && typeof latitude === "number")) {
+        var message = "invalid longitude / latitude input, make sure they are (signed) numeric value";
         return common_nodejs_utils_1.errorWithCode(message, 400);
     }
     if (!(utils_1.isValidLongitude(longitude) && utils_1.isValidLatitude(latitude))) {

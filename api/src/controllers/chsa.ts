@@ -12,17 +12,28 @@
 // limitations under the License.
 //
 
-'use strict';
+"use strict";
 
-import { errorWithCode, logger } from '@bcgov/common-nodejs-utils';
-import { Request, Response } from 'express';
-import { writeGeoApiUsageLog } from '../libs/geo-api-usage-log';
-import shared from '../libs/shared';
-import { isEmptyValue, isValidLatitude, isValidLongitude, writeToDbSuccessCallback } from '../libs/utils';
-import { ChsaResponseSet, QueriedPoint } from '../types';
+import { errorWithCode, logger } from "@bcgov/common-nodejs-utils";
+import { Request, Response } from "express";
+import { writeGeoApiUsageLog } from "../libs/geo-api-usage-log";
+import shared from "../libs/shared";
+import {
+  isEmptyValue,
+  isValidLatitude,
+  isValidLongitude,
+  writeToDbSuccessCallback,
+} from "../libs/utils";
+import { ChsaResponseSet, QueriedPoint } from "../types";
 
-export const queryChsaResponseSet = async (req: Request, res: Response): Promise<void> => {
-  const { body: { longitude, latitude }, body } = req;
+export const queryChsaResponseSet = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  const {
+    body: { longitude, latitude },
+    body,
+  } = req;
   const rv: Error | undefined = validate(body);
   if (rv) {
     throw rv;
@@ -30,7 +41,9 @@ export const queryChsaResponseSet = async (req: Request, res: Response): Promise
 
   try {
     const queriedPoint: QueriedPoint = { longitude, latitude };
-    const rv1: Error | ChsaResponseSet = await shared.geo.fetchChsaResponseSet(queriedPoint);
+    const rv1: Error | ChsaResponseSet = await shared.geo.fetchChsaResponseSet(
+      queriedPoint
+    );
 
     if (rv1 instanceof Error) {
       writeGeoApiUsageLog(queriedPoint, {}).then(writeToDbSuccessCallback);
@@ -39,11 +52,12 @@ export const queryChsaResponseSet = async (req: Request, res: Response): Promise
       writeGeoApiUsageLog(queriedPoint, rv1).then(writeToDbSuccessCallback);
       res.status(200).json(rv1);
     }
-  } catch (err) {
-    const message = 'unable to query chsa response set';
-    logger.error(`${message}, err = ${err.message}`);
 
-    throw errorWithCode(err.message, err.code);
+  } catch (err) {
+    const message = "unable to query chsa response set";
+    logger.error(`${message}, err = ${err.message}`);
+    res.status(err.code).json(err.message);
+    // throw errorWithCode(err.message, err.code);
   }
 };
 
@@ -51,12 +65,14 @@ const validate = (body: any): Error | undefined => {
   const { longitude, latitude } = body;
 
   if (isEmptyValue(longitude) || isEmptyValue(latitude)) {
-    const message = 'missing required fields in body, longitude / latitude input';
+    const message =
+      "missing required fields in body, longitude / latitude input";
     return errorWithCode(message, 400);
   }
 
-  if (!(typeof longitude === 'number' && typeof latitude === 'number')) {
-    const message = 'invalid longitude / latitude input, make sure they are (signed) numeric value';
+  if (!(typeof longitude === "number" && typeof latitude === "number")) {
+    const message =
+      "invalid longitude / latitude input, make sure they are (signed) numeric value";
     return errorWithCode(message, 400);
   }
 
