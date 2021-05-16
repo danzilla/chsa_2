@@ -45,7 +45,6 @@ const schema = {
 export default function getValidator() {
   const mustBeValidLongitude = (value: any) => {
     const errors = validate({ longitude: value }, schema, { fullMessages: false });
-    console.log(errors);
     if (errors && errors.longitude) {
       return errors.longitude[0];
     }
@@ -53,7 +52,6 @@ export default function getValidator() {
 
   const mustBeValidLatitude = (value: any) => {
     const errors = validate({ latitude: value }, schema, { fullMessages: false });
-    console.log(errors);
     if (errors && errors.latitude) {      
       return errors.latitude[0];
     }
