@@ -26,5 +26,4 @@ const App = () => (
     </Auxillary>
   </div>
 );
-
 export default App;

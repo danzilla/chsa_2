@@ -21,7 +21,7 @@ import TextInput from './UI/TextInput';
 import './ChsaQueryForm.css';
 
 const validator = getValidator();
-const convertFormData = (formData: any) => {
+const convertFormData = async (formData: any) => {
   const longitude = parseFloat(formData.longitude);
   const latitude = parseFloat(formData.latitude);
 
