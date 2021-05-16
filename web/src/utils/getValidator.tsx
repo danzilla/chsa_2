@@ -48,7 +48,8 @@ export default function getValidator() {
     if (errors && errors.longitude) {
       return errors.longitude[0];
     }
-    //      // Expected to return a value at the end of arrow function => return null
+
+    // Expected to return a value at the end of arrow function => return null
     return null;
   };
 
@@ -57,7 +58,8 @@ export default function getValidator() {
     if (errors && errors.latitude) {
       return errors.latitude[0];
     }
-    //      // Expected to return a value at the end of arrow function => return null
+
+    // Expected to return a value at the end of arrow function => return null
     return null;
   };
 
