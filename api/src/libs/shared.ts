@@ -12,27 +12,27 @@
 // limitations under the License.
 //
 
-"use strict";
+'use strict';
 
-import { Pool } from "pg";
-import config from "../config";
-import { Options } from "../types";
-import { default as GeoApiService } from "./geo-api-service";
+import { Pool } from 'pg';
+import config from '../config';
+import { Options } from '../types';
+import { default as GeoApiService } from './geo-api-service';
 
 interface Shared {
   pgPool: Pool;
   geo: GeoApiService;
 }
 
-const pgPoolKey = Symbol.for("chsa.pgpool");
-const geoKey = Symbol.for("chsa.geo");
+const pgPoolKey = Symbol.for('chsa.pgpool');
+const geoKey = Symbol.for('chsa.geo');
 
 const gs = Object.getOwnPropertySymbols(global);
 
 const main = async () => {
   if (gs.indexOf(geoKey) <= -1) {
     const opts: Options = {
-      baseURL: config.get("geo:baseURL"),
+      baseURL: config.get('geo:baseURL'),
     };
 
     const geo = new GeoApiService(opts);
@@ -41,14 +41,14 @@ const main = async () => {
 
   if (gs.indexOf(pgPoolKey) <= -1) {
     const params = {
-      host: config.get("db:host"),
-      port: config.get("db:port"),
-      database: config.get("db:database"),
-      user: config.get("db:user"),
-      password: config.get("db:password"),
-      max: config.get("db:maxConnections"),
-      idleTimeoutMillis: config.get("db:idleTimeout"),
-      connectionTimeoutMillis: config.get("db:connectionTimeout"),
+      host: config.get('db:host'),
+      port: config.get('db:port'),
+      database: config.get('db:database'),
+      user: config.get('db:user'),
+      password: config.get('db:password'),
+      max: config.get('db:maxConnections'),
+      idleTimeoutMillis: config.get('db:idleTimeout'),
+      connectionTimeoutMillis: config.get('db:connectionTimeout'),
     };
 
     global[pgPoolKey] = new Pool(params);
@@ -59,11 +59,11 @@ main();
 
 const shared = {};
 
-Object.defineProperty(shared, "geo", {
+Object.defineProperty(shared, 'geo', {
   get: () => global[geoKey],
 });
 
-Object.defineProperty(shared, "pgPool", {
+Object.defineProperty(shared, 'pgPool', {
   get: () => global[pgPoolKey],
 });
 

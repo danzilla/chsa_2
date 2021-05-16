@@ -15,10 +15,10 @@
 exports.__esModule = true;
 var geo_api_usage_log_1 = require("./model/geo-api-usage-log");
 var DataManager = /** @class */ (function () {
-  function DataManager(pool) {
-    this.pool = pool;
-    this.GeoApiUsageLogModel = new geo_api_usage_log_1["default"](pool);
-  }
-  return DataManager;
-})();
+    function DataManager(pool) {
+        this.pool = pool;
+        this.GeoApiUsageLogModel = new geo_api_usage_log_1["default"](pool);
+    }
+    return DataManager;
+}());
 exports["default"] = DataManager;

@@ -16,10 +16,11 @@ exports.__esModule = true;
 var dotenv = require("dotenv");
 var nconf = require("nconf");
 var path = require("path");
+dotenv.config({ path: path.resolve(__dirname, "../../../.env") });
 var env = process.env.NODE_ENV || "development";
 var fileName = "config.json";
 if (env === "development") {
-  dotenv.config();
+    dotenv.config();
 }
 /**
  * These settings contain sensitive information and should not be
@@ -28,20 +29,20 @@ if (env === "development") {
  */
 // overrides are always as defined
 nconf.overrides({
-  environment: env,
-  port: process.env.PORT || 8200,
-  db: {
-    host: process.env.POSTGRESQL_HOST,
-    user: process.env.APP_DB_USER,
-    password: process.env.APP_DB_PASSWORD,
-  },
-  geo: {
-    baseURL: process.env.GEO_BASEURL,
-  },
+    environment: env,
+    port: process.env.PORT || 8200,
+    db: {
+        host: process.env.POSTGRESQL_HOST,
+        user: process.env.APP_DB_USER,
+        password: process.env.APP_DB_PASSWORD
+    },
+    geo: {
+        baseURL: process.env.GEO_BASEURL
+    }
 });
 // load other properties from file.
 nconf
-  .argv()
-  .env()
-  .file({ file: path.join(__dirname, "" + fileName) });
+    .argv()
+    .env()
+    .file({ file: path.join(__dirname, "" + fileName) });
 exports["default"] = nconf;

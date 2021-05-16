@@ -17,8 +17,5 @@ var common_nodejs_utils_1 = require("@bcgov/common-nodejs-utils");
 var express = require("express");
 var chsa_1 = require("../../controllers/chsa");
 var router = express.Router();
-router.post(
-  "/",
-  common_nodejs_utils_1.asyncMiddleware(chsa_1.queryChsaResponseSet)
-);
+router.post("/", common_nodejs_utils_1.asyncMiddleware(chsa_1.queryChsaResponseSet));
 exports["default"] = router;

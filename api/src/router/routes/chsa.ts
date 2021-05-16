@@ -12,14 +12,14 @@
 // limitations under the License.
 //
 
-"use strict";
+'use strict';
 
-import { asyncMiddleware } from "@bcgov/common-nodejs-utils";
-import express = require("express");
-import { queryChsaResponseSet } from "../../controllers/chsa";
+import { asyncMiddleware } from '@bcgov/common-nodejs-utils';
+import express = require('express');
+import { queryChsaResponseSet } from '../../controllers/chsa';
 
 const router = express.Router();
 
-router.post("/", asyncMiddleware(queryChsaResponseSet));
+router.post('/', asyncMiddleware(queryChsaResponseSet));
 
 export default router;
