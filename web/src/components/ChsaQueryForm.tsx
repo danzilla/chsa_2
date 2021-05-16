@@ -20,7 +20,7 @@ import getValidator from '../utils/getValidator';
 import TextInput from './UI/TextInput';
 
 const validator = getValidator();
-const convertFormData = (formData: any) => {
+const convertFormData = async (formData: any) => {
   const longitude = parseFloat(formData.longitude);
   const latitude = parseFloat(formData.latitude);
 
