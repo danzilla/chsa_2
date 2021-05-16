@@ -18,6 +18,7 @@ import { Field, Form } from 'react-final-form';
 import useApi from '../hooks/useApi';
 import getValidator from '../utils/getValidator';
 import TextInput from './UI/TextInput';
+import './ChsaQueryForm.css';
 
 const validator = getValidator();
 const convertFormData = (formData: any) => {
@@ -70,36 +71,40 @@ const ChsaQueryForm: React.FC = () => {
   };
 
   return (
-    <Form
-      onSubmit={onSubmit}
-      validate={(values) => {
-        const errors = {};
-        return errors;
-      }}
-    >
-      {(formProps) => (
-        <form onSubmit={formProps.handleSubmit}>
-          <p>{dataResponse}</p>
-          Please provide a valid BC location to query Community Health Service Area name.
-          <Label htmlFor="longitude">Longitude</Label>
-          <Field<string>
-            name="longitude"
-            component={TextInput}
-            validate={validator.mustBeValidLongitude}
-            placeholder="-123.711"
-          />
-          <Label htmlFor="latitude">Latitude</Label>
-          <Field<string>
-            name="latitude"
-            component={TextInput}
-            validate={validator.mustBeValidLatitude}
-            placeholder="48.8277"
-          />
-          {/* eslint-disable */}
-          <button style={{ display: 'block' }}>Submit</button>
-        </form>
-      )}
-    </Form>
+    <div className="card">
+      <div className="container">
+        <Form
+          onSubmit={onSubmit}
+          validate={(values) => {
+            const errors = {};
+            return errors;
+          }}
+        >
+          {(formProps) => (
+            <form onSubmit={formProps.handleSubmit}>
+              <p>{dataResponse}</p>
+              Please provide a valid BC location to query Community Health Service Area name.
+              <Label htmlFor="longitude">Longitude</Label>
+              <Field<string>
+                name="longitude"
+                component={TextInput}
+                validate={validator.mustBeValidLongitude}
+                placeholder="-123.711"
+              />
+              <Label htmlFor="latitude">Latitude</Label>
+              <Field<string>
+                name="latitude"
+                component={TextInput}
+                validate={validator.mustBeValidLatitude}
+                placeholder="48.8277"
+              />
+              {/* eslint-disable */}
+              <button style={{ display: 'block' }}>Submit</button>
+            </form>
+          )}
+        </Form>
+      </div>
+    </div>
   );
 };
 

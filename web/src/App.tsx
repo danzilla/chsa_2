@@ -15,13 +15,16 @@
 import React from 'react';
 import ChsaQueryForm from './components/ChsaQueryForm';
 import Auxillary from './hoc/auxillary';
+import './App.css';
 
 const App = () => (
-  <Auxillary>
-    <h1>Querying Tool</h1>
-    <br />
-    <ChsaQueryForm />
-  </Auxillary>
+  <div className="App">
+    <Auxillary>
+      <h1>Querying Tool</h1>
+      <br />
+      <ChsaQueryForm />
+    </Auxillary>
+  </div>
 );
 
 export default App;

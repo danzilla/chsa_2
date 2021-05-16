@@ -19,15 +19,12 @@ var config_1 = require("../config");
 var chsa_1 = require("./routes/chsa");
 var ehlo_1 = require("./routes/ehlo");
 var corsOptions = {
-  origin:
-    config_1["default"].get("environment") === "development"
-      ? "*"
-      : config_1["default"].get("apiUrl"),
-  credentials: true,
-  optionsSuccessStatus: 200,
+    origin: config_1["default"].get("environment") === "development" ? "*" : config_1["default"].get("apiUrl"),
+    credentials: true,
+    optionsSuccessStatus: 200
 };
 exports.router = function (app) {
-  app.use(cors(corsOptions));
-  app.use("/api/v1/ehlo", ehlo_1["default"]); // probes
-  app.use("/api/v1/chsa", chsa_1["default"]); // chsa resources
+    app.use(cors(corsOptions));
+    app.use("/api/v1/ehlo", ehlo_1["default"]); // probes
+    app.use("/api/v1/chsa", chsa_1["default"]); // chsa resources
 };

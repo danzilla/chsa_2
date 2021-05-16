@@ -1,0 +1,16 @@
+/* Form Card style */
+.card {
+  padding: 25px 35px;
+  border-top: 2px solid #007233;
+  background-color: #fff;
+  transition: 0.3s;
+  width: 50%;
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  text-align: center;
+}
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+.messageBox {
+  margin-bottom: 1.2em;
+}
