@@ -19,19 +19,15 @@ var index_1 = require("./index");
 var env = config_1["default"].get("environment");
 var port = config_1["default"].get("port");
 index_1["default"]
-  .listen(port, "0.0.0.0", function () {
+    .listen(port, "0.0.0.0", function () {
     if (env !== "production") {
-      return common_nodejs_utils_1.started(port);
+        return common_nodejs_utils_1.started(port);
     }
-    return common_nodejs_utils_1.logger.info(
-      "production server running on port: " + port
-    );
-  })
-  .on("error", function (err) {
+    return common_nodejs_utils_1.logger.info("production server running on port: " + port);
+})
+    .on("error", function (err) {
     if (err) {
-      return common_nodejs_utils_1.logger.error(
-        "there was a problem starting the server, " + err.message
-      );
+        return common_nodejs_utils_1.logger.error("there was a problem starting the server, " + err.message);
     }
-  });
+});
 module.exports = index_1["default"];

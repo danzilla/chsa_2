@@ -12,9 +12,9 @@
 // limitations under the License.
 //
 
-"use strict";
+'use strict';
 
-import { camelCase } from "lodash";
+import { camelCase } from 'lodash';
 
 export const transformKeysToCamelCase = (data) => {
   const obj = {};

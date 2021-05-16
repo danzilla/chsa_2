@@ -12,10 +12,10 @@
 // limitations under the License.
 //
 
-"use strict";
+'use strict';
 
-import { Pool } from "pg";
-import GeoApiUsageLogModel from "./model/geo-api-usage-log";
+import { Pool } from 'pg';
+import GeoApiUsageLogModel from './model/geo-api-usage-log';
 
 export default class DataManager {
   pool: Pool;

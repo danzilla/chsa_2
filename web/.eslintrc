@@ -29,7 +29,7 @@
         "args": "none"
       }
     ],
-    /*"@typescript-eslint/no-explicit-any": [
+    /* "@typescript-eslint/no-explicit-any": [
       "warn",
       {
         "ignoreRestArgs": true

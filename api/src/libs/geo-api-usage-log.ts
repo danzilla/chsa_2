@@ -12,13 +12,13 @@
 // limitations under the License.
 //
 
-"use strict";
+'use strict';
 
-import { logger } from "@bcgov/common-nodejs-utils";
-import DataManager from "../db";
-import { GeoApiUsageLog } from "../db/model/geo-api-usage-log";
-import { ChsaResponseSet, QueriedPoint } from "../types";
-import shared from "./shared";
+import { logger } from '@bcgov/common-nodejs-utils';
+import DataManager from '../db';
+import { GeoApiUsageLog } from '../db/model/geo-api-usage-log';
+import { ChsaResponseSet, QueriedPoint } from '../types';
+import shared from './shared';
 
 const dm = new DataManager(shared.pgPool);
 const { GeoApiUsageLogModel } = dm;
