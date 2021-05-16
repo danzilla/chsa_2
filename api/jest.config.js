@@ -12,20 +12,29 @@
 // limitations under the License.
 //
 
-'use strict';
+"use strict";
 
 module.exports = {
   // collectCoverage: true,
-  collectCoverageFrom: ['src/**/*.{ts,tsx}', '!**/node_modules/**', '!**/vendor/**'],
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-  moduleDirectories: ['node_modules'],
-  modulePathIgnorePatterns: ['<rootDir>/build/', '<rootDir>/dist/'],
+  collectCoverageFrom: [
+    "src/**/*.{ts,tsx}",
+    "!**/node_modules/**",
+    "!**/vendor/**",
+  ],
+  moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
+  moduleDirectories: ["node_modules"],
+  modulePathIgnorePatterns: ["<rootDir>/build/", "<rootDir>/dist/"],
   transform: {
-    '^.+\\.ts?$': 'ts-jest',
+    "^.+\\.ts?$": "ts-jest",
   },
-  testEnvironment: 'node',
-  testRegex: ['(/__tests__/.*|(\\.|/)(test|spec))\\.[ts]sx?$'],
-  testPathIgnorePatterns: ['/node_modules/', '/.cache/',
-    '/build/', '/dist/', '/__tests__/src/'],
+  testEnvironment: "node",
+  testRegex: ["(/__tests__/.*|(\\.|/)(test|spec))\\.[ts]sx?$"],
+  testPathIgnorePatterns: [
+    "/node_modules/",
+    "/.cache/",
+    "/build/",
+    "/dist/",
+    "/__tests__/src/",
+  ],
   verbose: true,
 };

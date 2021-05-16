@@ -49,7 +49,7 @@ paths:
         422:
           description: The request was received but incorrect
         500:
-          description: Internal Error 
+          description: Internal Error
 components:
   schemas:
     ChsaQueriedPoint:

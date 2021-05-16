@@ -1,18 +1,12 @@
 {
   "defaultSeverity": "error",
-  "extends": [
-    "tslint:recommended"
-  ],
+  "extends": ["tslint:recommended"],
   "jsRules": {
     "no-empty": true
   },
   "rules": {
     "eofline": true,
-    "align": [
-      true,
-      "parameters",
-      "statements"
-    ],
+    "align": [true, "parameters", "statements"],
     "max-line-length": [
       true,
       {
@@ -22,14 +16,8 @@
         "check-regex": true
       }
     ],
-    "quotemark": [
-      true,
-      "single"
-    ],
-    "interface-name": [
-      true,
-      "never-prefix"
-    ],
+    "quotemark": [true, "single"],
+    "interface-name": [true, "never-prefix"],
     "trailing-comma": [
       true,
       {

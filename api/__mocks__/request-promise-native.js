@@ -14,13 +14,13 @@
 
 /* eslint-disable no-unused-vars */
 
-'use strict';
+"use strict";
 
-let rpn = jest.genMockFromModule('request-promise-native');
+let rpn = jest.genMockFromModule("request-promise-native");
 
 function request(options) {
   return new Promise((resolve, reject) => {
-    resolve('OK');
+    resolve("OK");
   });
 }
 

@@ -12,11 +12,11 @@
 // limitations under the License.
 //
 
-'use strict';
+"use strict";
 
-import { logger } from '@bcgov/common-nodejs-utils';
-import { Pool } from 'pg';
-import { transformKeysToCamelCase } from '../utils';
+import { logger } from "@bcgov/common-nodejs-utils";
+import { Pool } from "pg";
+import { transformKeysToCamelCase } from "../utils";
 
 export interface Query {
   text: string;
@@ -79,7 +79,9 @@ export abstract class Model {
     let client;
 
     if (this.pool.waitingCount > 0) {
-      logger.warn(`Database pool has ${this.pool.waitingCount} waiting queries`);
+      logger.warn(
+        `Database pool has ${this.pool.waitingCount} waiting queries`
+      );
     }
 
     try {

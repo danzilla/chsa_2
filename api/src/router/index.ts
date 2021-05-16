@@ -12,21 +12,22 @@
 // limitations under the License.
 //
 
-'use strict';
+"use strict";
 
-import * as cors from 'cors';
-import config from '../config';
-import chsa from './routes/chsa';
-import ehlo from './routes/ehlo';
+import * as cors from "cors";
+import config from "../config";
+import chsa from "./routes/chsa";
+import ehlo from "./routes/ehlo";
 
 const corsOptions = {
-  origin: config.get('environment') === 'development' ? '*' : config.get('apiUrl'),
+  origin:
+    config.get("environment") === "development" ? "*" : config.get("apiUrl"),
   credentials: true,
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
-export const router = app => {
+export const router = (app) => {
   app.use(cors(corsOptions));
-  app.use('/api/v1/ehlo', ehlo); // probes
-  app.use('/api/v1/chsa', chsa); // chsa resources
+  app.use("/api/v1/ehlo", ehlo); // probes
+  app.use("/api/v1/chsa", chsa); // chsa resources
 };

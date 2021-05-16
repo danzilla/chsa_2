@@ -49,7 +49,9 @@ const ChsaQueryForm: React.FC = () => {
         .then((response) => {
           const chsaName = response.data.CMNTY_HLTH_SERV_AREA_NAME;
           // alert();
-          setDataResponse(`The name of the corresponding Community Health Service Area: ${chsaName}`);
+          setDataResponse(
+            `The name of the corresponding Community Health Service Area: ${chsaName}`,
+          );
         })
         .catch((err) => {
           if (err.response.data) {

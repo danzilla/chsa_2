@@ -12,13 +12,13 @@
 // limitations under the License.
 //
 
-'use strict';
+"use strict";
 
-import { camelCase } from 'lodash';
+import { camelCase } from "lodash";
 
-export const transformKeysToCamelCase = data => {
+export const transformKeysToCamelCase = (data) => {
   const obj = {};
-  Object.keys(data).forEach(key => {
+  Object.keys(data).forEach((key) => {
     obj[camelCase(key)] = data[key];
   });
 

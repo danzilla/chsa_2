@@ -11,43 +11,44 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-'use strict';
+"use strict";
 exports.__esModule = true;
 var common_nodejs_utils_1 = require("@bcgov/common-nodejs-utils");
 var bodyParser = require("body-parser");
 var flash = require("connect-flash");
 var cookieParser = require("cookie-parser");
-// import * as express from 'express';
+var express = require("express");
 var fs = require("fs");
 var path = require("path");
 var router_1 = require("./router");
-var express = require('express');
 var app = express();
 var options = {
-    inflate: true,
-    limit: '204800kb',
-    type: 'image/*'
+  inflate: true,
+  limit: "204800kb",
+  type: "image/*",
 };
-var docpath = path.join(__dirname, '../', 'public/doc/api');
-var pubpath = path.join(__dirname, '../', 'public');
+var docpath = path.join(__dirname, "../", "public/doc/api");
+var pubpath = path.join(__dirname, "../", "public");
 fs.access(docpath, fs.constants.R_OK, function (err) {
-    if (err) {
-        common_nodejs_utils_1.logger.warn('API documentation does not exist');
-        return;
-    }
-    app.use('/doc', express.static(docpath));
+  if (err) {
+    common_nodejs_utils_1.logger.warn("API documentation does not exist");
+    return;
+  }
+  app.use("/doc", express.static(docpath));
 });
 fs.access(pubpath, fs.constants.R_OK, function (err) {
-    if (err) {
-        common_nodejs_utils_1.logger.warn('static assets location does not exist');
-        return;
-    }
-    app.use('/', express.static(pubpath));
+  if (err) {
+    common_nodejs_utils_1.logger.warn("static assets location does not exist");
+    return;
+  }
+  app.use("/", express.static(pubpath));
 });
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
 app.use(bodyParser.json());
 app.use(bodyParser.raw(options));
 app.use(flash());
@@ -57,9 +58,9 @@ router_1.router(app);
 // this needs to be last in or it will not get called
 // eslint-disable-next-line no-unused-vars
 app.use(function (err, req, res, next) {
-    common_nodejs_utils_1.logger.error(err.message);
-    var code = err.code ? err.code : 500;
-    var message = err.message ? err.message : 'internal server error';
-    res.status(code).json({ error: message, success: false });
+  common_nodejs_utils_1.logger.error(err.message);
+  var code = err.code ? err.code : 500;
+  var message = err.message ? err.message : "internal server error";
+  res.status(code).json({ error: message, success: false });
 });
 exports["default"] = app;

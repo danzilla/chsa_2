@@ -12,28 +12,27 @@
 // limitations under the License.
 //
 
-'use strict';
+"use strict";
 
-import { queryChsaResponseSet } from '../src/controllers/chsa';
-import { isEmptyValue } from '../src/libs/utils';
-import FauxExpress from './src/fauxexpress';
+import { queryChsaResponseSet } from "../src/controllers/chsa";
+import { isEmptyValue } from "../src/libs/utils";
+import FauxExpress from "./src/fauxexpress";
 
-jest.mock('../src/libs/utils', () => ({
+jest.mock("../src/libs/utils", () => ({
   isEmptyValue: jest.fn(),
   isValidLongitude: jest.fn(),
   isValidLatitude: jest.fn(),
 }));
 
-describe('Chsa resources event handlers', () => {
+describe("Chsa resources event handlers", () => {
   let ex;
 
   beforeEach(() => {
     jest.clearAllMocks();
-
     ex = new FauxExpress();
   });
 
-  it('Chsa name / code response set is updated upon invalid query', async () => {
+  it("Chsa name / code response set is updated upon invalid query", async () => {
     // @ts-ignore
     isEmptyValue.mockReturnValue(true);
     // @ts-ignore
@@ -41,7 +40,7 @@ describe('Chsa resources event handlers', () => {
 
     const req = {
       body: {
-        test: 'test',
+        test: "test",
       },
     };
 

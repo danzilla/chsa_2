@@ -12,37 +12,43 @@
 // limitations under the License.
 //
 
-'use strict';
+"use strict";
 
-import { logger } from '@bcgov/common-nodejs-utils';
+import { logger } from "@bcgov/common-nodejs-utils";
 
 // extra check_empty function is needed
 // because lodash isEmpty seems to produce confusing results
 // e.g. lodash.isEmpty(true) OR lodash.isEmpty(1) yields true
 export const isEmptyValue = (value: any): boolean => {
-  return value === undefined || value === null || value === ''
-    || (typeof value === 'object' && Object.keys(value).length === 0)
+  return (
+    value === undefined ||
+    value === null ||
+    value === "" ||
+    (typeof value === "object" && Object.keys(value).length === 0)
+  );
 };
 
 export const isValidLongitude = (longitude: number): boolean => {
-  if (typeof longitude !== 'number') {
-    throw new Error('invalid argument to isValidLongitude function');
+  if (typeof longitude !== "number") {
+    throw new Error("invalid argument to isValidLongitude function");
   }
 
   return isFinite(longitude) && Math.abs(longitude) <= 180;
 };
 
 export const isValidLatitude = (latitude: number): boolean => {
-  if (typeof latitude !== 'number') {
-    throw new Error('invalid argument to isValidLatitude function');
+  if (typeof latitude !== "number") {
+    throw new Error("invalid argument to isValidLatitude function");
   }
 
   return isFinite(latitude) && Math.abs(latitude) <= 90;
 };
 
 export const convertNumToStrFormatForGeoApi = (value: number): string => {
-  if (typeof value !== 'number') {
-    throw new Error('invalid argument to convertNumToStrFormatForGeoApi function');
+  if (typeof value !== "number") {
+    throw new Error(
+      "invalid argument to convertNumToStrFormatForGeoApi function"
+    );
   }
 
   if (value >= 0) {

@@ -12,19 +12,19 @@
 // limitations under the License.
 //
 
-'use strict';
+"use strict";
 
 export const ENVIRONMENTS = {
-  DEVELOPMENT: 'development',
-  PRODUCTION: 'production',
+  DEVELOPMENT: "development",
+  PRODUCTION: "production",
 };
 
 export const GEO_API_CALL = {
-  SERVICE: 'WFS',
-  VERSION: '1.0.0',
-  REQUEST: 'GetFeature',
-  TYPE_NAME: 'pub:WHSE_ADMIN_BOUNDARIES.BCHA_CMNTY_HEALTH_SERV_AREA_SP',
-  SRS_NAME: 'EPSG:4326',
-  PROPERTY_NAME: 'CMNTY_HLTH_SERV_AREA_CODE,CMNTY_HLTH_SERV_AREA_NAME',
-  OUTPUT_FORMAT: 'application/json',
+  SERVICE: "WFS",
+  VERSION: "1.0.0",
+  REQUEST: "GetFeature",
+  TYPE_NAME: "pub:WHSE_ADMIN_BOUNDARIES.BCHA_CMNTY_HEALTH_SERV_AREA_SP",
+  SRS_NAME: "EPSG:4326",
+  PROPERTY_NAME: "CMNTY_HLTH_SERV_AREA_CODE,CMNTY_HLTH_SERV_AREA_NAME",
+  OUTPUT_FORMAT: "application/json",
 };

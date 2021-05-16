@@ -14,16 +14,16 @@
 
 /* eslint-disable no-unused-vars */
 
-'use strict';
+"use strict";
 
 const fn = {
   get: jest.fn(() => Promise.resolve({ data: {} })),
-  post: jest.fn(() => Promise.resolve({ data: {} }))
+  post: jest.fn(() => Promise.resolve({ data: {} })),
 };
 
 const factory = {
   fn,
   create: () => fn,
-}
+};
 
 module.exports = factory;

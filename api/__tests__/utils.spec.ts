@@ -12,37 +12,42 @@
 // limitations under the License.
 //
 
-'use strict';
+"use strict";
 
-import { convertNumToStrFormatForGeoApi, isEmptyValue, isValidLatitude, isValidLongitude } from '../src/libs/utils';
+import {
+  convertNumToStrFormatForGeoApi,
+  isEmptyValue,
+  isValidLatitude,
+  isValidLongitude,
+} from "../src/libs/utils";
 
-describe('Utils service', () => {
-  it('isEmptyValue() works correctly', async () => {
+describe("Utils service", () => {
+  it("isEmptyValue() works correctly", async () => {
     const item0: null = null;
     expect(isEmptyValue(item0)).toEqual(true);
 
     const item1: undefined = undefined;
     expect(isEmptyValue(item1)).toEqual(true);
 
-    const item2: string = '';
+    const item2: string = "";
     expect(isEmptyValue(item2)).toEqual(true);
   });
 
-  it('isValidLongitude() works correctly', async () => {
+  it("isValidLongitude() works correctly", async () => {
     const item0: number = -123.711;
     expect(isValidLongitude(item0)).toEqual(true);
   });
 
-  it('isValidLatitude() works correctly', async () => {
+  it("isValidLatitude() works correctly", async () => {
     const item0: number = 48.8277;
     expect(isValidLatitude(item0)).toEqual(true);
   });
 
-  it('convertNumToStrFormatForGeoApi() works correctly', async () => {
+  it("convertNumToStrFormatForGeoApi() works correctly", async () => {
     const item0: number = 48.8277;
-    expect(convertNumToStrFormatForGeoApi(item0)).toEqual('+48.8277');
+    expect(convertNumToStrFormatForGeoApi(item0)).toEqual("+48.8277");
 
     const item1: number = -123.711;
-    expect(convertNumToStrFormatForGeoApi(item1)).toEqual('-123.711');
+    expect(convertNumToStrFormatForGeoApi(item1)).toEqual("-123.711");
   });
 });

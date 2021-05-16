@@ -42,7 +42,7 @@ export default function useApi() {
   const axiosInstance = useAxios();
 
   const queryChsaResponseSet = async (queriedPoint: any): Promise<AxiosResponse<any>> => {
-    if (!axiosInstance.current) {      
+    if (!axiosInstance.current) {
       throw new Error(errorMsg);
     } else {
       return axiosInstance.current.post('chsa', queriedPoint);

@@ -52,7 +52,7 @@ export default function getValidator() {
 
   const mustBeValidLatitude = (value: any) => {
     const errors = validate({ latitude: value }, schema, { fullMessages: false });
-    if (errors && errors.latitude) {      
+    if (errors && errors.latitude) {
       return errors.latitude[0];
     }
   };

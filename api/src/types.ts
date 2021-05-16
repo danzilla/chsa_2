@@ -12,40 +12,40 @@
 // limitations under the License.
 //
 
-'use strict';
+"use strict";
 
 export interface Options {
-    baseURL: string;
+  baseURL: string;
 }
 
 export interface QueriedPoint {
-    longitude: number;
-    latitude: number;
+  longitude: number;
+  latitude: number;
 }
 
 export interface ChsaResponseSet {
-    CMNTY_HLTH_SERV_AREA_CODE: string;
-    CMNTY_HLTH_SERV_AREA_NAME: string;
+  CMNTY_HLTH_SERV_AREA_CODE: string;
+  CMNTY_HLTH_SERV_AREA_NAME: string;
 }
 
 export interface ChsaFeature {
-    type: string;
-    id: string;
-    geometry: any;
-    properties: {
-        HLTH_CHSA_SYSID: number;
-        CMNTY_HLTH_SERV_AREA_CODE: string;
-        CMNTY_HLTH_SERV_AREA_NAME: string;
-        OBJECTID: number;
-    }
+  type: string;
+  id: string;
+  geometry: any;
+  properties: {
+    HLTH_CHSA_SYSID: number;
+    CMNTY_HLTH_SERV_AREA_CODE: string;
+    CMNTY_HLTH_SERV_AREA_NAME: string;
+    OBJECTID: number;
+  };
 }
 
 export interface ChsaPayload {
-    type: string;
-    features: ChsaFeature[];
-    totalFeatures: number;
-    numberMatched: number;
-    numberReturned: number;
-    timeStamp: Date;
-    crs: any;
+  type: string;
+  features: ChsaFeature[];
+  totalFeatures: number;
+  numberMatched: number;
+  numberReturned: number;
+  timeStamp: Date;
+  crs: any;
 }

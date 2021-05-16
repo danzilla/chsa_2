@@ -12,27 +12,33 @@
 // limitations under the License.
 //
 
-'use strict';
+"use strict";
 
-import mockAxios from 'axios';
-import fs from 'fs';
-import path from 'path';
-import { default as GeoApiService } from '../src/libs/geo-api-service';
-import { Options } from '../src/types';
+import mockAxios from "axios";
+import fs from "fs";
+import path from "path";
+import { default as GeoApiService } from "../src/libs/geo-api-service";
+import { Options } from "../src/types";
 
-const p0 = path.join(__dirname, 'fixtures/get-geo-api-response-invalid-bc-location.json');
-const invalidBCLocationResponse = JSON.parse(fs.readFileSync(p0, 'utf8'));
+const p0 = path.join(
+  __dirname,
+  "fixtures/get-geo-api-response-invalid-bc-location.json"
+);
+const invalidBCLocationResponse = JSON.parse(fs.readFileSync(p0, "utf8"));
 
-const p1 = path.join(__dirname, 'fixtures/get-geo-api-response-valid-bc-location.json');
-const validBCLocationResponse = JSON.parse(fs.readFileSync(p1, 'utf8'));
+const p1 = path.join(
+  __dirname,
+  "fixtures/get-geo-api-response-valid-bc-location.json"
+);
+const validBCLocationResponse = JSON.parse(fs.readFileSync(p1, "utf8"));
 
-describe('Services', () => {
+describe("Services", () => {
   const options: Options = {
-    baseURL: 'something',
+    baseURL: "something",
   };
   const geo = new GeoApiService(options);
   const headers = {
-    'content-type': 'application/json'
+    "content-type": "application/json",
   };
 
   beforeEach(() => {
@@ -44,7 +50,59 @@ describe('Services', () => {
   //
   // });
 
-  it('queryChsaResponseSet() works correctly for valid BC location', async () => {
+  // inValid BC Locations - invalidBCLocationResponse
+  // Check for invalid response
+  it("queryChsaResponseSet() works correctly for invalid BC location", async () => {
+    const queriedPoint = {
+      longitude: -123,
+      latitude: 48,
+    };
+    // @ts-ignore
+    mockAxios.fn.get.mockImplementationOnce(() =>
+      Promise.resolve({
+        data: invalidBCLocationResponse,
+        headers,
+      })
+    );
+    const result = await geo.fetchChsaResponseSet(queriedPoint);
+    expect(result).toMatchSnapshot();
+    // @ts-ignore
+    expect(mockAxios.fn.get).toHaveBeenCalledTimes(1);
+  });
+
+  // For non success status
+  it("queryChsaResponseSet() works correctly when the external api responds non success status code", async () => {
+    const queriedPoint = {
+      longitude: -123,
+      latitude: 48,
+    };
+    // @ts-ignore
+    mockAxios.fn.post.mockImplementationOnce(() => Promise.reject());
+    const result = await geo.fetchChsaResponseSet(queriedPoint);
+    expect(result).toMatchSnapshot();
+  });
+
+  // External api response
+  it("queryChsaResponseSet() works correctly for invalid BC location when the external api responds non json", async () => {
+    const queriedPoint = {
+      longitude: -123,
+      latitude: 48,
+    };
+    // @ts-ignore
+    mockAxios.fn.get.mockImplementationOnce(() =>
+      Promise.resolve({
+        data: invalidBCLocationResponse,
+        headers: {
+          "content-type": "text/xml;charset=UTF-8",
+        },
+      })
+    );
+    const result = await geo.fetchChsaResponseSet(queriedPoint);
+    expect(result).toMatchSnapshot();
+  });
+
+  // Valid BC Locations - validBCLocationResponse
+  it("queryChsaResponseSet() works correctly for valid BC location", async () => {
     const queriedPoint = {
       longitude: -123.711,
       latitude: 48.8277,
@@ -64,21 +122,19 @@ describe('Services', () => {
     expect(mockAxios.fn.get).toHaveBeenCalledTimes(1);
   });
 
-  it('queryChsaResponseSet() works correctly when the external api responds non success status code', async () => {
+  it("queryChsaResponseSet() works correctly when the external api responds non success status code", async () => {
     const queriedPoint = {
       longitude: -123.711,
       latitude: 48.8277,
     };
     // @ts-ignore
-    mockAxios.fn.post.mockImplementationOnce(() =>
-      Promise.reject()
-    );
+    mockAxios.fn.post.mockImplementationOnce(() => Promise.reject());
 
     const result = await geo.fetchChsaResponseSet(queriedPoint);
     expect(result).toMatchSnapshot();
   });
 
-  it('queryChsaResponseSet() works correctly when the external api responds non json', async () => {
+  it("queryChsaResponseSet() works correctly when the external api responds non json", async () => {
     const queriedPoint = {
       longitude: -123.711,
       latitude: 48.8277,
@@ -89,8 +145,8 @@ describe('Services', () => {
       Promise.resolve({
         data: validBCLocationResponse,
         headers: {
-          'content-type': 'text/xml;charset=UTF-8',
-        }
+          "content-type": "text/xml;charset=UTF-8",
+        },
       })
     );
 

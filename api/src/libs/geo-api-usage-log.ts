@@ -12,32 +12,38 @@
 // limitations under the License.
 //
 
-'use strict';
+"use strict";
 
-import { logger } from '@bcgov/common-nodejs-utils';
-import DataManager from '../db';
-import { GeoApiUsageLog } from '../db/model/geo-api-usage-log';
-import { ChsaResponseSet, QueriedPoint } from '../types';
-import shared from './shared';
+import { logger } from "@bcgov/common-nodejs-utils";
+import DataManager from "../db";
+import { GeoApiUsageLog } from "../db/model/geo-api-usage-log";
+import { ChsaResponseSet, QueriedPoint } from "../types";
+import shared from "./shared";
 
 const dm = new DataManager(shared.pgPool);
 const { GeoApiUsageLogModel } = dm;
 
-export const writeGeoApiUsageLog = async (queriedPoint: QueriedPoint, chsaResponseSet: ChsaResponseSet | any): Promise<GeoApiUsageLog> => {
-    try {
-        const { CMNTY_HLTH_SERV_AREA_CODE, CMNTY_HLTH_SERV_AREA_NAME } = chsaResponseSet;
-        const { latitude, longitude } = queriedPoint;
+export const writeGeoApiUsageLog = async (
+  queriedPoint: QueriedPoint,
+  chsaResponseSet: ChsaResponseSet | any
+): Promise<GeoApiUsageLog> => {
+  try {
+    const { CMNTY_HLTH_SERV_AREA_CODE, CMNTY_HLTH_SERV_AREA_NAME } =
+      chsaResponseSet;
+    const { latitude, longitude } = queriedPoint;
 
-        return await GeoApiUsageLogModel.create({
-            queriedLongitude: longitude,
-            queriedLatitude: latitude,
-            resultChsaCode: CMNTY_HLTH_SERV_AREA_CODE,
-            resultChsaName: CMNTY_HLTH_SERV_AREA_NAME,
-        });
-    } catch (err) {
-        const message = `unable to write geo api usage log for querying ${JSON.stringify(queriedPoint)}`;
-        logger.error(`${message}, err = ${err.message}`);
+    return await GeoApiUsageLogModel.create({
+      queriedLongitude: longitude,
+      queriedLatitude: latitude,
+      resultChsaCode: CMNTY_HLTH_SERV_AREA_CODE,
+      resultChsaName: CMNTY_HLTH_SERV_AREA_NAME,
+    });
+  } catch (err) {
+    const message = `unable to write geo api usage log for querying ${JSON.stringify(
+      queriedPoint
+    )}`;
+    logger.error(`${message}, err = ${err.message}`);
 
-        throw err;
-    }
+    throw err;
+  }
 };

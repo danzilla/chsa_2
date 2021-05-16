@@ -14,12 +14,12 @@
 
 /* eslint-disable no-unused-vars */
 
-'use strict';
+"use strict";
 
 const client = {
   query: jest.fn(),
   release: jest.fn(),
-}
+};
 
 module.exports = {
   Pool: jest.fn(() => {
@@ -29,6 +29,6 @@ module.exports = {
       }),
       query: jest.fn(),
       end: jest.fn(),
-    }
+    };
   }),
 };

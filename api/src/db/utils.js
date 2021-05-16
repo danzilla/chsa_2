@@ -11,14 +11,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-'use strict';
+"use strict";
 exports.__esModule = true;
 exports.transformKeysToCamelCase = void 0;
 var lodash_1 = require("lodash");
 exports.transformKeysToCamelCase = function (data) {
-    var obj = {};
-    Object.keys(data).forEach(function (key) {
-        obj[lodash_1.camelCase(key)] = data[key];
-    });
-    return obj;
+  var obj = {};
+  Object.keys(data).forEach(function (key) {
+    obj[lodash_1.camelCase(key)] = data[key];
+  });
+  return obj;
 };

@@ -12,44 +12,42 @@
 // limitations under the License.
 //
 
-'use strict';
+"use strict";
 
-import { logger } from '@bcgov/common-nodejs-utils';
-import * as bodyParser from 'body-parser';
-import * as flash from 'connect-flash';
-import * as cookieParser from 'cookie-parser';
-// import * as express from 'express';
-import * as fs from 'fs';
-import * as path from 'path';
-import { router } from './router';
-
-const express = require('express');
+import { logger } from "@bcgov/common-nodejs-utils";
+import * as bodyParser from "body-parser";
+import * as flash from "connect-flash";
+import * as cookieParser from "cookie-parser";
+import express = require("express");
+import * as fs from "fs";
+import * as path from "path";
+import { router } from "./router";
 
 const app = express();
 const options = {
   inflate: true,
-  limit: '204800kb', // 200Mb
-  type: 'image/*',
+  limit: "204800kb", // 200Mb
+  type: "image/*",
 };
-const docpath = path.join(__dirname, '../', 'public/doc/api');
-const pubpath = path.join(__dirname, '../', 'public');
+const docpath = path.join(__dirname, "../", "public/doc/api");
+const pubpath = path.join(__dirname, "../", "public");
 
-fs.access(docpath, fs.constants.R_OK, err => {
+fs.access(docpath, fs.constants.R_OK, (err) => {
   if (err) {
-    logger.warn('API documentation does not exist');
+    logger.warn("API documentation does not exist");
     return;
   }
 
-  app.use('/doc', express.static(docpath));
+  app.use("/doc", express.static(docpath));
 });
 
-fs.access(pubpath, fs.constants.R_OK, err => {
+fs.access(pubpath, fs.constants.R_OK, (err) => {
   if (err) {
-    logger.warn('static assets location does not exist');
+    logger.warn("static assets location does not exist");
     return;
   }
 
-  app.use('/', express.static(pubpath));
+  app.use("/", express.static(pubpath));
 });
 
 app.use(cookieParser());
@@ -71,7 +69,7 @@ router(app);
 app.use((err, req, res, next) => {
   logger.error(err.message);
   const code = err.code ? err.code : 500;
-  const message = err.message ? err.message : 'internal server error';
+  const message = err.message ? err.message : "internal server error";
 
   res.status(code).json({ error: message, success: false });
 });

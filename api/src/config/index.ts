@@ -12,22 +12,18 @@
 // limitations under the License
 //
 
-'use strict';
+"use strict";
 
-import * as dotenv from 'dotenv';
-import * as nconf from 'nconf';
+import * as dotenv from "dotenv";
+import * as nconf from "nconf";
+import * as path from "path";
+dotenv.config({ path: path.resolve(__dirname, "../../../.env") });
 
-const path = require('path');
-dotenv.config({ path: path.resolve(__dirname, '../../../.env') });
-
-const env = process.env.NODE_ENV || 'development';
-const port = process.env.PORT || 8100;
-const fileName = 'config.json';
-
-if (env === 'development') {
+const env = process.env.NODE_ENV || "development";
+const fileName = "config.json";
+if (env === "development") {
   dotenv.config();
 }
-
 
 /**
  * These settings contain sensitive information and should not be
@@ -38,7 +34,7 @@ if (env === 'development') {
 // overrides are always as defined
 nconf.overrides({
   environment: env,
-  port: port,
+  port: process.env.PORT || 8200,
   db: {
     host: process.env.POSTGRESQL_HOST,
     user: process.env.APP_DB_USER,

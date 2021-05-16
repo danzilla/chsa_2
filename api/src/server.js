@@ -11,21 +11,27 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-'use strict';
+"use strict";
 exports.__esModule = true;
 var common_nodejs_utils_1 = require("@bcgov/common-nodejs-utils");
 var config_1 = require("./config");
 var index_1 = require("./index");
-var env = config_1["default"].get('environment');
-var port = config_1["default"].get('port');
-index_1["default"].listen(port, '0.0.0.0', function () {
-    if (env !== 'production') {
-        return common_nodejs_utils_1.started(port);
+var env = config_1["default"].get("environment");
+var port = config_1["default"].get("port");
+index_1["default"]
+  .listen(port, "0.0.0.0", function () {
+    if (env !== "production") {
+      return common_nodejs_utils_1.started(port);
     }
-    return common_nodejs_utils_1.logger.info("production server running on port: " + port);
-}).on('error', function (err) {
+    return common_nodejs_utils_1.logger.info(
+      "production server running on port: " + port
+    );
+  })
+  .on("error", function (err) {
     if (err) {
-        return common_nodejs_utils_1.logger.error("there was a problem starting the server, " + err.message);
+      return common_nodejs_utils_1.logger.error(
+        "there was a problem starting the server, " + err.message
+      );
     }
-});
+  });
 module.exports = index_1["default"];

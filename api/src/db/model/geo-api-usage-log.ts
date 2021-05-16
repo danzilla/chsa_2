@@ -12,11 +12,11 @@
 // limitations under the License.
 //
 
-'use strict';
+"use strict";
 
-import { logger } from '@bcgov/common-nodejs-utils';
-import { Pool } from 'pg';
-import { CommonFields, Model } from './model';
+import { logger } from "@bcgov/common-nodejs-utils";
+import { Pool } from "pg";
+import { CommonFields, Model } from "./model";
 
 export interface GeoApiUsageLog extends CommonFields {
   queriedLongitude: number;
@@ -26,11 +26,8 @@ export interface GeoApiUsageLog extends CommonFields {
 }
 
 export default class GeoApiUsageLogModel extends Model {
-  table: string = 'geo_api_usage_log';
-  requiredFields: string[] = [
-    'queriedLongitude',
-    'queriedLatitude',
-  ];
+  table: string = "geo_api_usage_log";
+  requiredFields: string[] = ["queriedLongitude", "queriedLatitude"];
   pool: Pool;
 
   constructor(pool: any) {

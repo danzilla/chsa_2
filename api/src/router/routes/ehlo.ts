@@ -14,14 +14,16 @@
 // limitations under the License.
 //
 
-'use strict';
+"use strict";
 
-import { asyncMiddleware } from '@bcgov/common-nodejs-utils';
-// import express from 'express';
-const express = require('express');
+import { asyncMiddleware } from "@bcgov/common-nodejs-utils";
+import express = require("express");
 
 const router = express.Router();
 
-router.get('/', asyncMiddleware(async (req, res) => res.status(200).end()));
+router.get(
+  "/",
+  asyncMiddleware(async (req, res) => res.status(200).end())
+);
 
 export default router;
