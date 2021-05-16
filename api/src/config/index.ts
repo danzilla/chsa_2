@@ -34,7 +34,7 @@ if (env === 'development') {
 // overrides are always as defined
 nconf.overrides({
   environment: env,
-  port: process.env.PORT || 8200,
+  port: process.env.PORT || 8100,
   db: {
     host: process.env.POSTGRESQL_HOST,
     user: process.env.APP_DB_USER,

@@ -82,10 +82,8 @@ const ChsaQueryForm: React.FC = () => {
         >
           {(formProps) => (
             <form onSubmit={formProps.handleSubmit}>
-              <p className="messageBox">{dataResponse}</p>
-              <p className="messageBox">
-                Please provide a valid BC location to query Community Health Service Area name.
-              </p>
+              <p>{dataResponse}</p>
+              Please provide a valid BC location to query Community Health Service Area name.
               <Label htmlFor="longitude">Longitude</Label>
               <Field<string>
                 name="longitude"
