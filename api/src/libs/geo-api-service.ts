@@ -12,19 +12,19 @@
 // limitations under the License.
 //
 
-"use strict";
+'use strict';
 
-import { errorWithCode, logger } from "@bcgov/common-nodejs-utils";
-import axios, { AxiosInstance } from "axios";
-import { GEO_API_CALL } from "../constants";
+import { errorWithCode, logger } from '@bcgov/common-nodejs-utils';
+import axios, { AxiosInstance } from 'axios';
+import { GEO_API_CALL } from '../constants';
 import {
   ChsaFeature,
   ChsaPayload,
   ChsaResponseSet,
   Options,
   QueriedPoint,
-} from "../types";
-import { convertNumToStrFormatForGeoApi } from "./utils";
+} from '../types';
+import { convertNumToStrFormatForGeoApi } from './utils';
 
 export default class GeoApiService {
   private axi: AxiosInstance;
@@ -58,7 +58,7 @@ export default class GeoApiService {
         `ows?cql_filter=INTERSECTS(SHAPE,SRID=4326;POINT(${longStr}${latStr}))`,
         {
           headers: {
-            "content-type": "application/json",
+            'content-type': 'application/json',
           },
           params,
         }
@@ -67,9 +67,9 @@ export default class GeoApiService {
       // TODO: implement a solution for 'content-type' / 'Content-Type' issue
 
       // when geo api returns 200 but with a static page that shows certain exceptions
-      const contentType = response.headers["content-type"];
-      if (!(contentType && contentType.includes("application/json"))) {
-        throw errorWithCode("unable to query chsa response set", 500);
+      const contentType = response.headers['content-type'];
+      if (!(contentType && contentType.includes('application/json'))) {
+        throw errorWithCode('unable to query chsa response set', 500);
       }
 
       const payload: ChsaPayload = response.data;

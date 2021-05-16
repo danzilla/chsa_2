@@ -12,23 +12,23 @@
 // limitations under the License.
 //
 
-"use strict";
+'use strict';
 
-import { logger, started } from "@bcgov/common-nodejs-utils";
-import config from "./config";
-import app from "./index";
+import { logger, started } from '@bcgov/common-nodejs-utils';
+import config from './config';
+import app from './index';
 
-const env = config.get("environment");
-const port = config.get("port");
+const env = config.get('environment');
+const port = config.get('port');
 
 app
-  .listen(port, "0.0.0.0", () => {
-    if (env !== "production") {
+  .listen(port, '0.0.0.0', () => {
+    if (env !== 'production') {
       return started(port);
     }
     return logger.info(`production server running on port: ${port}`);
   })
-  .on("error", (err) => {
+  .on('error', (err) => {
     if (err) {
       return logger.error(
         `there was a problem starting the server, ${err.message}`

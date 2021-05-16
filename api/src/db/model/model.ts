@@ -12,11 +12,11 @@
 // limitations under the License.
 //
 
-"use strict";
+'use strict';
 
-import { logger } from "@bcgov/common-nodejs-utils";
-import { Pool } from "pg";
-import { transformKeysToCamelCase } from "../utils";
+import { logger } from '@bcgov/common-nodejs-utils';
+import { Pool } from 'pg';
+import { transformKeysToCamelCase } from '../utils';
 
 export interface Query {
   text: string;

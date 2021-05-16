@@ -12,16 +12,16 @@
 // limitations under the License
 //
 
-"use strict";
+'use strict';
 
-import * as dotenv from "dotenv";
-import * as nconf from "nconf";
-import * as path from "path";
-dotenv.config({ path: path.resolve(__dirname, "../../../.env") });
+import * as dotenv from 'dotenv';
+import * as nconf from 'nconf';
+import * as path from 'path';
+dotenv.config({ path: path.resolve(__dirname, '../../../.env') });
 
-const env = process.env.NODE_ENV || "development";
-const fileName = "config.json";
-if (env === "development") {
+const env = process.env.NODE_ENV || 'development';
+const fileName = 'config.json';
+if (env === 'development') {
   dotenv.config();
 }
 

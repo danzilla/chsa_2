@@ -12,19 +12,19 @@
 // limitations under the License.
 //
 
-"use strict";
+'use strict';
 
-import { errorWithCode, logger } from "@bcgov/common-nodejs-utils";
-import { Request, Response } from "express";
-import { writeGeoApiUsageLog } from "../libs/geo-api-usage-log";
-import shared from "../libs/shared";
+import { errorWithCode, logger } from '@bcgov/common-nodejs-utils';
+import { Request, Response } from 'express';
+import { writeGeoApiUsageLog } from '../libs/geo-api-usage-log';
+import shared from '../libs/shared';
 import {
   isEmptyValue,
   isValidLatitude,
   isValidLongitude,
   writeToDbSuccessCallback,
-} from "../libs/utils";
-import { ChsaResponseSet, QueriedPoint } from "../types";
+} from '../libs/utils';
+import { ChsaResponseSet, QueriedPoint } from '../types';
 
 export const queryChsaResponseSet = async (
   req: Request,
@@ -53,7 +53,7 @@ export const queryChsaResponseSet = async (
       res.status(200).json(rv1);
     }
   } catch (err) {
-    const message = "unable to query chsa response set";
+    const message = 'unable to query chsa response set';
     logger.error(`${message}, err = ${err.message}`);
     res.status(err.code).json(err.message);
     // throw errorWithCode(err.message, err.code);
@@ -65,13 +65,13 @@ const validate = (body: any): Error | undefined => {
 
   if (isEmptyValue(longitude) || isEmptyValue(latitude)) {
     const message =
-      "missing required fields in body, longitude / latitude input";
+      'missing required fields in body, longitude / latitude input';
     return errorWithCode(message, 400);
   }
 
-  if (!(typeof longitude === "number" && typeof latitude === "number")) {
+  if (!(typeof longitude === 'number' && typeof latitude === 'number')) {
     const message =
-      "invalid longitude / latitude input, make sure they are (signed) numeric value";
+      'invalid longitude / latitude input, make sure they are (signed) numeric value';
     return errorWithCode(message, 400);
   }
 
